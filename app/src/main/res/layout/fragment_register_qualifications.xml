@@ -5,10 +5,87 @@
     android:layout_height="match_parent"
     tools:context=".view.ui.fragments.RegisterQualificationsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:layout_margin="@dimen/margin_5">
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="@string/register_qualification_title"
+           android:textSize="@dimen/title_text"
+           android:textAlignment="center"
+           android:textColor="@android:color/black">
+       </TextView>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:padding="@dimen/padding_10">
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Select a cort"
+               android:textSize="@dimen/subtitle_text"
+               android:textAlignment="center">
+           </TextView>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+               <RadioGroup
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   android:layout_margin="@dimen/margin_5">
+                   <RadioButton
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/first_cort_text"
+                       android:layout_marginEnd="@dimen/margin_5">
+                   </RadioButton>
+                   <RadioButton
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/second_cort_text"
+                       android:layout_marginEnd="@dimen/margin_5">
+                   </RadioButton>
+                   <RadioButton
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/third_cort_text">
+                   </RadioButton>
+               </RadioGroup>
+           </LinearLayout>
+           <Button
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/margin_5"
+               android:text="@string/add_activity_button_text"
+               android:gravity="center"
+               android:layout_gravity="center">
+           </Button>
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/margin_5"
+               android:textAlignment="center"
+               android:textSize="@dimen/subtitle_text"
+               android:text="Activities">
+           </TextView>
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/register_activities"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+               </androidx.recyclerview.widget.RecyclerView>
+           </RelativeLayout>
+       </LinearLayout>
+   </LinearLayout>
 
 </FrameLayout>

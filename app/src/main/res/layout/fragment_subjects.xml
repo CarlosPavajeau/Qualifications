@@ -5,10 +5,27 @@
     android:layout_height="match_parent"
     tools:context=".view.ui.fragments.SubjectsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/subjects"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+    </androidx.recyclerview.widget.RecyclerView>
 
+    <RelativeLayout
+        android:id="@+id/rv_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:alpha="0.7">
+        </View>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@color/colorPrimary">
+        </ProgressBar>
+    </RelativeLayout>
 </FrameLayout>

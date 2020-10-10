@@ -2,4 +2,18 @@
     <string name="app_name">Qualifications</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="subject_code_helper_text">Enter subject code</string>
+    <string name="name_field_label">Name</string>
+    <string name="code_field_label">Code</string>
+    <string name="register_subject_button_text">Register subject</string>
+    <string name="subject_name_helper_text">Enter subject name</string>
+    <string name="register_subject_title">Register subject</string>
+    <string name="subject_item_code">Code: %1$s</string>
+    <string name="subject_qualifications_item">Qualifications: %1$d, %2$d, %3$d</string>
+    <string name="subject_definitive_item">Definitive: %1$d</string>
+    <string name="register_qualification_title">Register qualification</string>
+    <string name="first_cort_text">Cort 1</string>
+    <string name="second_cort_text">Cort 2</string>
+    <string name="third_cort_text">Cort 3</string>
+    <string name="add_activity_button_text">Add activity</string>
 </resources>
