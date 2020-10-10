@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.ui.fragments.RegisterSubjectFragment">
+    tools:context=".view.ui.fragments.RegisterSubjectFragment"
+    android:theme="@style/MaterialTheme">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:hint="Code">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -38,7 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:hint="Name">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
