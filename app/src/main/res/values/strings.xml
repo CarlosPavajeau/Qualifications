@@ -16,4 +16,16 @@
     <string name="second_cort_text">Cort 2</string>
     <string name="third_cort_text">Cort 3</string>
     <string name="add_activity_button_text">Add activity</string>
+    <string name="statistics_title">Statistics</string>
+    <string name="statistics_definitive_text">Definitive: %1$d</string>
+    <string name="statistics_registered_subjects_text">Registered subjects: %1$d</string>
+    <string name="statistics_approved_subjects_text">Approved subjects: %1$d</string>
+    <string name="statistics_failed_subjects_text">Failed subjects: %1$d</string>
+    <string name="register_activity_title">Register activity</string>
+    <string name="activity_name_field">Name</string>
+    <string name="activity_note_field">Note</string>
+    <string name="activity_percent_field">Percent</string>
+    <string name="activity_name_helper_text">Enter activity name</string>
+    <string name="activity_note_helper_text">Enter activity note</string>
+    <string name="activity_percent_helper_text">Enter activity percent</string>
 </resources>

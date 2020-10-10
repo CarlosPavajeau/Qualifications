@@ -76,16 +76,16 @@
                android:textSize="@dimen/subtitle_text"
                android:text="Activities">
            </TextView>
-           <RelativeLayout
+           <LinearLayout
                android:layout_width="match_parent"
-               android:layout_height="wrap_content">
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
                <androidx.recyclerview.widget.RecyclerView
                    android:id="@+id/register_activities"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content">
                </androidx.recyclerview.widget.RecyclerView>
-           </RelativeLayout>
+           </LinearLayout>
        </LinearLayout>
    </LinearLayout>
-
 </FrameLayout>
