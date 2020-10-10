@@ -1,7 +1,8 @@
 package com.qualifications.model
 
-import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
+
+private const val MAX_PERCENT = 1.0
 
 class Qualification {
     var id: Int = 0
@@ -9,25 +10,24 @@ class Qualification {
     @IntRange(from = 1, to = 3)
     var cort: Int = 1
 
-    @FloatRange(from = 0.0, to = 1.0)
-    var quizPercent: Float = 0.0f
-    var quizValue: Float = 0.0f
-
-    @FloatRange(from = 0.0, to = 1.0)
-    var theoryPercent: Float = 0.0f
-    var theoryValue: Float = 0.0f
-
-    @FloatRange(from = 0.0, to = 1.0)
-    var worksPercent: Float = 0.0f
-    var worksValue: Float = 0.0f
-
-    @FloatRange(from = 0.0, to = 1.0)
-    var practicePercent: Float = 0.0f
-    var practiceValue: Float = 0.0f
+    var activities: ArrayList<Activity> = ArrayList()
 
     val total: Float
     get() {
-        return (quizPercent * quizValue) + (theoryPercent * theoryValue) + (worksPercent + worksValue) + (practicePercent * practiceValue)
+        return activities.map { a -> a.percent * a.note }.reduce { acc, fl -> acc + fl }
     }
 
+
+    private val totalPercent: Float
+    get() {
+        return activities.map { a -> a.percent }.reduce { acc, fl -> acc + fl }
+    }
+
+    fun addActivity(activity: Activity): Boolean {
+        if (totalPercent + activity.percent > MAX_PERCENT)
+            return false
+
+        activities.add(activity)
+        return true
+    }
 }
