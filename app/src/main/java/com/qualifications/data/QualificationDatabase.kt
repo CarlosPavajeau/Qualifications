@@ -123,6 +123,14 @@ class QualificationDatabase(private val context: Context) {
         return databaseConnection.update(ACTIVITIES_TABLE_NAME, activityContentValues, "id = ?", arrayOf(activity.id.toString())) > 0
     }
 
+    fun updateSubject(subject: Subject): Boolean {
+        val subjectContentValues = ContentValues()
+
+        subjectContentValues.put("name", subject.name)
+
+        return databaseConnection.update(SUBJECTS_TABLE_NAME, subjectContentValues, "code = ?", arrayOf(subject.code)) > 0
+    }
+
     fun deleteActivity(activityCode: Int): Boolean {
         return databaseConnection.delete(ACTIVITIES_TABLE_NAME, "id = ?", arrayOf(activityCode.toString())) > 0
     }

@@ -1,15 +1,21 @@
 package com.qualifications.model
 
-class Subject(val code: String, val name: String) {
-    val qualifications: ArrayList<Qualification> = ArrayList(3)
+import java.io.Serializable
+
+class Subject(val code: String, val name: String) : Serializable {
+    val qualifications: ArrayList<Qualification> = ArrayList()
 
     init {
+        qualifications.addAll(arrayListOf(Qualification(), Qualification(), Qualification()))
         var cort = 1
         qualifications.forEach { it.cort = cort++ }
     }
 
     val definitive: Float
     get() {
+        if (qualifications.size == 0) {
+            return 0.0F
+        }
         return qualifications.map { q -> q.total }.reduce { acc, fl -> acc + fl }
     }
 

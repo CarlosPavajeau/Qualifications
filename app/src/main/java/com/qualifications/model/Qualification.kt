@@ -1,10 +1,11 @@
 package com.qualifications.model
 
 import androidx.annotation.IntRange
+import java.io.Serializable
 
 private const val MAX_PERCENT = 1.0
 
-class Qualification {
+class Qualification : Serializable {
     var id: Int = 0
 
     @IntRange(from = 1, to = 3)
@@ -14,6 +15,9 @@ class Qualification {
 
     private val totalPartial: Float
     get() {
+        if (activities.size == 0) {
+            return 0.0F
+        }
         return activities.map { a -> a.percent * a.note }.reduce { acc, fl -> acc + fl }
     }
 
@@ -33,6 +37,9 @@ class Qualification {
 
     private val totalActivitiesPercent: Float
     get() {
+        if (activities.size == 0) {
+            return 0.0F
+        }
         return activities.map { a -> a.percent }.reduce { acc, fl -> acc + fl }
     }
 
