@@ -18,6 +18,14 @@
            android:textAlignment="center"
            android:textColor="@android:color/black">
        </TextView>
+       <TextView
+           android:id="@+id/subject_name"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/margin_5"
+           android:textSize="@dimen/subtitle_text"
+           android:text="@string/register_qualification_subject_name_text">
+       </TextView>
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"

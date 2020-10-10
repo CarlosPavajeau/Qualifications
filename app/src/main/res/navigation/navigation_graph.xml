@@ -9,7 +9,11 @@
         android:id="@+id/registerQualificationsFragment"
         android:name="com.qualifications.view.ui.fragments.RegisterQualificationsFragment"
         android:label="fragment_register_qualifications"
-        tools:layout="@layout/fragment_register_qualifications" />
+        tools:layout="@layout/fragment_register_qualifications" >
+        <action
+            android:id="@+id/action_registerQualificationsFragment_to_registerActivityFragment"
+            app:destination="@id/registerActivityFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerSubjectFragment"
         android:name="com.qualifications.view.ui.fragments.RegisterSubjectFragment"
@@ -24,5 +28,14 @@
         android:id="@+id/subjectsFragment"
         android:name="com.qualifications.view.ui.fragments.SubjectsFragment"
         android:label="fragment_subjects"
-        tools:layout="@layout/fragment_subjects" />
+        tools:layout="@layout/fragment_subjects" >
+        <action
+            android:id="@+id/action_subjectsFragment_to_registerQualificationsFragment"
+            app:destination="@id/registerQualificationsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerActivityFragment"
+        android:name="com.qualifications.view.ui.fragments.RegisterActivityFragment"
+        android:label="fragment_register_activity"
+        tools:layout="@layout/fragment_register_activity" />
 </navigation>
