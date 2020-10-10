@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/subjectsFragment">
+
+    <fragment
+        android:id="@+id/registerQualificationsFragment"
+        android:name="com.qualifications.view.ui.fragments.RegisterQualificationsFragment"
+        android:label="fragment_register_qualifications"
+        tools:layout="@layout/fragment_register_qualifications" />
+    <fragment
+        android:id="@+id/registerSubjectFragment"
+        android:name="com.qualifications.view.ui.fragments.RegisterSubjectFragment"
+        android:label="fragment_register_subject"
+        tools:layout="@layout/fragment_register_subject" />
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.qualifications.view.ui.fragments.StatisticsFragment"
+        android:label="fragment_statistics"
+        tools:layout="@layout/fragment_statistics" />
+    <fragment
+        android:id="@+id/subjectsFragment"
+        android:name="com.qualifications.view.ui.fragments.SubjectsFragment"
+        android:label="fragment_subjects"
+        tools:layout="@layout/fragment_subjects" />
+</navigation>

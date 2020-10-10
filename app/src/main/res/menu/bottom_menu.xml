@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/subjectsFragment" android:title="Subjects" android:icon="@drawable/ic_baseline_subject">
+    </item>
+    <item android:id="@+id/registerSubjectFragment" android:title="Register" android:icon="@drawable/ic_baseline_add_circle">
+    </item>
+    <item android:id="@+id/statisticsFragment" android:title="Statitics" android:icon="@drawable/ic_baseline_insert_chart">
+    </item>
+</menu>
