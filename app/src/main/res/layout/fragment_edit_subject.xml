@@ -50,15 +50,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_10"
+            android:textColorHint="@color/colorPrimary"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@android:color/white"
             android:text="@string/update_subject_button_text">
         </Button>
-        <TextView
-            android:id="@+id/success_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Success!"
-            android:visibility="invisible">
-        </TextView>
     </LinearLayout>
 
 </FrameLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,7 +17,10 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/subject_item_image"
-                android:src="@drawable/ic_baseline_subject">
+                android:layout_gravity="bottom"
+                android:src="@drawable/ic_baseline_class_24"
+                app:tint="@color/colorPrimary"
+                android:alpha="0.9">
             </ImageView>
         </LinearLayout>
         <LinearLayout
@@ -33,7 +36,8 @@
                 android:text="Subject name"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/title_text"
-                android:textStyle="bold">
+                android:textStyle="bold"
+                android:paddingBottom="@dimen/margin_5">
             </TextView>
             <TextView
                 android:id="@+id/subject_code"
@@ -65,13 +69,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_edit"
-                android:layout_gravity="center_vertical">
+                android:layout_gravity="center_vertical"
+                android:tint="@color/colorPrimary"
+                android:backgroundTint="@android:color/transparent">
             </ImageButton>
             <ImageButton
                 android:id="@+id/subject_delete_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_delete"
+                android:tint="@color/colorDelete"
+                android:backgroundTint="@android:color/transparent"
                 android:layout_gravity="center_vertical">
             </ImageButton>
         </LinearLayout>
