@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.ui.fragments.EditSubjectFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_10">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title_text"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:text="Edit subject">
+        </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/padding_10">
+            <TextView
+                android:id="@+id/subject_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/subject_item_code"
+                android:layout_marginBottom="@dimen/padding_10">
+            </TextView>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/subject_name_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name_field_label"
+                app:helperTextEnabled="true"
+                app:helperText="@string/subject_name_helper_text">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+        <Button
+            android:id="@+id/update_subject_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_10"
+            android:text="@string/update_subject_button_text">
+        </Button>
+        <TextView
+            android:id="@+id/success_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Success!"
+            android:visibility="invisible">
+        </TextView>
+    </LinearLayout>
+
+</FrameLayout>

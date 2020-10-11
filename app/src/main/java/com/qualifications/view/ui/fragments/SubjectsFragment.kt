@@ -61,4 +61,15 @@ class SubjectsFragment : Fragment(), SubjectListener {
         val bundle = bundleOf("subject" to subject)
         findNavController().navigate(R.id.registerQualificationsFragment, bundle)
     }
+
+    override fun onSubjectDeleteButtonTap(subject: Subject , index: Int) {
+        if (subjectViewModel.deleteSubject(subject)) {
+            subjectViewModel.refresh()
+        }
+    }
+
+    override fun onSubjectEditButtonTap(subject: Subject , index: Int) {
+        val bundle = bundleOf("subject" to subject)
+        findNavController().navigate(R.id.editSubjectFragment, bundle)
+    }
 }

@@ -33,4 +33,5 @@
     <string name="activity_percent_item">Percent: %1$.2f%%</string>
     <string name="percent_complete_without_cort">Percent complete: (Select a cort)</string>
     <string name="percent_complete_with_cort">Percent complete: %1$.2f%%</string>
+    <string name="update_subject_button_text">Update subject</string>
 </resources>

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.qualifications.R
 import com.qualifications.model.Subject
@@ -14,6 +15,8 @@ class SubjectAdapter(private val subjectListener: SubjectListener) : RecyclerVie
         val name: TextView = itemView.findViewById(R.id.subject_name)
         val qualifications: TextView = itemView.findViewById(R.id.subject_qualifications)
         val definitive: TextView = itemView.findViewById(R.id.subject_definitive)
+        val deleteSubjectButton: AppCompatImageButton = itemView.findViewById(R.id.subject_delete_button)
+        val editSubjectButton: AppCompatImageButton = itemView.findViewById(R.id.subject_edit_button)
     }
 
     var subjects = ArrayList<Subject>()
@@ -38,6 +41,14 @@ class SubjectAdapter(private val subjectListener: SubjectListener) : RecyclerVie
 
         holder.itemView.setOnClickListener {
             subjectListener.onSubjectTap(subject, position)
+        }
+
+        holder.deleteSubjectButton.setOnClickListener {
+            subjectListener.onSubjectDeleteButtonTap(subject, position)
+        }
+
+        holder.editSubjectButton.setOnClickListener {
+            subjectListener.onSubjectEditButtonTap(subject, position)
         }
     }
 

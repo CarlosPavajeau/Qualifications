@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_registerQualificationsFragment_to_registerActivityFragment"
             app:destination="@id/registerActivityFragment" />
+        <action
+            android:id="@+id/action_registerQualificationsFragment_to_editActivityFragment"
+            app:destination="@id/editActivityFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerSubjectFragment"
@@ -32,10 +35,27 @@
         <action
             android:id="@+id/action_subjectsFragment_to_registerQualificationsFragment"
             app:destination="@id/registerQualificationsFragment" />
+        <action
+            android:id="@+id/action_subjectsFragment_to_editSubjectFragment"
+            app:destination="@id/editSubjectFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerActivityFragment"
         android:name="com.qualifications.view.ui.fragments.RegisterActivityFragment"
         android:label="fragment_register_activity"
         tools:layout="@layout/fragment_register_activity" />
+    <fragment
+        android:id="@+id/editActivityFragment"
+        android:name="com.qualifications.view.ui.fragments.EditActivityFragment"
+        android:label="fragment_edit_activity"
+        tools:layout="@layout/fragment_edit_activity" />
+    <fragment
+        android:id="@+id/editSubjectFragment"
+        android:name="com.qualifications.view.ui.fragments.EditSubjectFragment"
+        android:label="fragment_edit_subject"
+        tools:layout="@layout/fragment_edit_subject" >
+        <action
+            android:id="@+id/action_editSubjectFragment_to_subjectsFragment"
+            app:destination="@id/subjectsFragment" />
+    </fragment>
 </navigation>

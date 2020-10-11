@@ -32,6 +32,10 @@ class SubjectViewModel(context: Context) : ViewModel() {
         return qualificationDatabase.deleteActivity(activityCode)
     }
 
+    fun deleteSubject(subject: Subject): Boolean {
+        return qualificationDatabase.deleteSubject(subject.code)
+    }
+
     private fun getSubjects(): ArrayList<Subject> {
         return qualificationDatabase.getSubjects()
     }
