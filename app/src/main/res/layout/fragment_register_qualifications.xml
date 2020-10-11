@@ -51,18 +51,21 @@
                    android:gravity="center"
                    android:layout_margin="@dimen/margin_5">
                    <RadioButton
+                       android:id="@+id/cort_1"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/first_cort_text"
                        android:layout_marginEnd="@dimen/margin_5">
                    </RadioButton>
                    <RadioButton
+                       android:id="@+id/cort_2"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/second_cort_text"
                        android:layout_marginEnd="@dimen/margin_5">
                    </RadioButton>
                    <RadioButton
+                       android:id="@+id/cort_3"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/third_cort_text">
@@ -79,6 +82,7 @@
                android:layout_gravity="center">
            </Button>
            <TextView
+               android:id="@+id/title_activity"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_marginTop="@dimen/margin_5"

@@ -51,6 +51,7 @@ class QualificationDatabase(private val context: Context) {
             subjectCursor.moveToFirst()
             do {
                 val subject = Subject(subjectCursor.getString(0), subjectCursor.getString(1))
+                setSubjectQualifications(subject)
                 subjects.add(subject)
             } while (subjectCursor.moveToNext())
         }
@@ -65,7 +66,15 @@ class QualificationDatabase(private val context: Context) {
             return null
 
         val subject = Subject(subjectCursor.getString(0), subjectCursor.getString(1))
-        val qualificationCursor = databaseConnection.rawQuery("SELECT * FROM $QUALIFICATIONS_DATABASE_NAME WHERE subject_code = ?", arrayOf(subject.code))
+        setSubjectQualifications(subject)
+        return subject
+    }
+
+    private fun setSubjectQualifications(subject: Subject) {
+        val qualificationCursor = databaseConnection.rawQuery(
+            "SELECT * FROM $QUALIFICATIONS_DATABASE_NAME WHERE subject_code = ?" ,
+            arrayOf(subject.code)
+        )
         if (qualificationCursor.count > 0) {
             qualificationCursor.moveToFirst()
             do {
@@ -78,8 +87,6 @@ class QualificationDatabase(private val context: Context) {
                 subject.addQualification(qualification)
             } while (qualificationCursor.moveToNext())
         }
-
-        return subject
     }
 
     private fun getQualificationActivities(qualificationId: Int): ArrayList<Activity> {

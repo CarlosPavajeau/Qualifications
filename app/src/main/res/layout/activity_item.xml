@@ -27,7 +27,7 @@
             android:orientation="vertical"
             android:layout_marginStart="@dimen/margin_5">
             <TextView
-                android:id="@+id/subject_name"
+                android:id="@+id/activity_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Activity name"
