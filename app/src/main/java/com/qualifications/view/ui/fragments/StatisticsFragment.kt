@@ -32,7 +32,7 @@ class StatisticsFragment : Fragment() {
         subjectViewModel = SubjectViewModel(view.context)
         subjectViewModel.refresh()
 
-        subjectViewModel.subjects.observe(viewLifecycleOwner, Observer { it ->
+        subjectViewModel.subjects.observe(viewLifecycleOwner, { it ->
             if (it.isNotEmpty()) {
                 val subjectsDefinitive = ((it.map { it.definitive }).reduce { acc, fl -> acc + fl } / it.size)
                 definitive.text = "Definitive: $subjectsDefinitive"
