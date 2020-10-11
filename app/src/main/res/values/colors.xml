@@ -5,4 +5,5 @@
     <color name="colorAccent">#001845</color>
     <color name="colorDelete">#FF4763</color>
     <color name="yellowGreen">#DFCC74</color>
+    <color name="successGreen">#157A6E</color>
 </resources>

@@ -22,7 +22,7 @@
            android:id="@+id/subject_name"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:layout_margin="@dimen/margin_5"
+           android:layout_margin="@dimen/margin_15"
            android:layout_marginRight="@dimen/padding_10"
            android:textSize="@dimen/subtitle_text"
            android:text="@string/register_qualification_subject_name_text">
@@ -99,7 +99,7 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:text="@string/percent_complete_without_cort"
-               android:layout_margin="@dimen/margin_5">
+               android:layout_margin="@dimen/margin_15">
            </TextView>
            <LinearLayout
                android:layout_width="match_parent"
