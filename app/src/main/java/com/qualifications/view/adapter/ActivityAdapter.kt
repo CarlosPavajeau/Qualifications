@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.qualifications.R
 import com.qualifications.model.Activity
 
-class ActivityAdapter : RecyclerView.Adapter<ActivityAdapter.ViewHolder>() {
+class ActivityAdapter(private val activityListener: ActivityListener) : RecyclerView.Adapter<ActivityAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.activity_name)
         val note: TextView = itemView.findViewById(R.id.activity_note)
         val percent: TextView = itemView.findViewById(R.id.activity_percent)
-        val button: AppCompatImageButton = itemView.findViewById(R.id.activity_delete_button)
+        val deleteButton: AppCompatImageButton = itemView.findViewById(R.id.activity_delete_button)
     }
 
     var activities = ArrayList<Activity>()
@@ -30,6 +30,11 @@ class ActivityAdapter : RecyclerView.Adapter<ActivityAdapter.ViewHolder>() {
         holder.name.text = activity.name
         holder.note.text = "Note: ${activity.note}"
         holder.percent.text = "Percent: ${activity.percent * 100}%"
+
+        holder.deleteButton.setOnClickListener {
+            activityListener.onActivityDeleteButtonTap(activity, position)
+        }
+
     }
 
     override fun getItemCount(): Int {

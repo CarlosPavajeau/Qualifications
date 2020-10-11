@@ -1,17 +1,22 @@
 package com.qualifications.view.ui.fragments
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qualifications.R
+import com.qualifications.model.Activity
 import com.qualifications.model.Qualification
 import com.qualifications.model.Subject
 import com.qualifications.view.adapter.ActivityAdapter
+import com.qualifications.view.adapter.ActivityListener
+import com.qualifications.viewmodel.SubjectViewModel
 import kotlinx.android.synthetic.main.fragment_register_qualifications.*
 
 /**
@@ -19,10 +24,11 @@ import kotlinx.android.synthetic.main.fragment_register_qualifications.*
  * Use the [RegisterQualificationsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class RegisterQualificationsFragment : Fragment() {
+class RegisterQualificationsFragment : Fragment(), ActivityListener {
     private lateinit var subject: Subject
     private var currentCort: Int = 0
 
+    private lateinit var subjectViewModel: SubjectViewModel
     private lateinit var activityAdapter: ActivityAdapter
 
     override fun onCreateView(
@@ -36,7 +42,8 @@ class RegisterQualificationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        activityAdapter = ActivityAdapter()
+        subjectViewModel = SubjectViewModel(view.context)
+        activityAdapter = ActivityAdapter(this)
 
         subject = arguments?.getSerializable("subject") as Subject
         register_activities.apply {
@@ -73,6 +80,20 @@ class RegisterQualificationsFragment : Fragment() {
                 val bundle = bundleOf("qualification" to subject.qualifications[currentCort - 1])
                 findNavController().navigate(R.id.registerActivityFragment, bundle)
             }
+        }
+    }
+
+    override fun onActivityTap(activity: Activity , position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun onActivityDeleteButtonTap(activity: Activity , position: Int) {
+        if (subjectViewModel.deleteActivity(activity.id)) {
+            val qualification = subject.qualifications[currentCort - 1]
+            qualification.activities.removeIf { it.id == activity.id }
+            activityAdapter.updateData(qualification.activities)
+            percent_complete.text = "Percent complete: ${qualification.totalActivitiesPercent * 100}%"
         }
     }
 }
