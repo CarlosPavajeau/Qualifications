@@ -15,6 +15,7 @@ class ActivityAdapter(private val activityListener: ActivityListener) : Recycler
         val note: TextView = itemView.findViewById(R.id.activity_note)
         val percent: TextView = itemView.findViewById(R.id.activity_percent)
         val deleteButton: AppCompatImageButton = itemView.findViewById(R.id.activity_delete_button)
+        val editButton: AppCompatImageButton = itemView.findViewById(R.id.activity_edit_button)
     }
 
     var activities = ArrayList<Activity>()
@@ -33,6 +34,10 @@ class ActivityAdapter(private val activityListener: ActivityListener) : Recycler
 
         holder.deleteButton.setOnClickListener {
             activityListener.onActivityDeleteButtonTap(activity, position)
+        }
+
+        holder.editButton.setOnClickListener {
+            activityListener.onActivityEditButtonTap(activity, position)
         }
 
     }

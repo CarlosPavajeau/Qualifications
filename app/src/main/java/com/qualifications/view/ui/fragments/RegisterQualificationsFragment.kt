@@ -83,8 +83,9 @@ class RegisterQualificationsFragment : Fragment(), ActivityListener {
         }
     }
 
-    override fun onActivityTap(activity: Activity , position: Int) {
-        TODO("Not yet implemented")
+    override fun onActivityEditButtonTap(activity: Activity , position: Int) {
+        val bundle = bundleOf("activity" to activity)
+        findNavController().navigate(R.id.editActivityFragment, bundle)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
