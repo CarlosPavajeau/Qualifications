@@ -29,7 +29,7 @@ class ActivityAdapter : RecyclerView.Adapter<ActivityAdapter.ViewHolder>() {
 
         holder.name.text = activity.name
         holder.note.text = "Note: ${activity.note}"
-        holder.percent.text = "Percent: ${activity.percent * 100}"
+        holder.percent.text = "Percent: ${activity.percent * 100}%"
     }
 
     override fun getItemCount(): Int {

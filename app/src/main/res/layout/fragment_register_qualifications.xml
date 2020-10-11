@@ -90,6 +90,13 @@
                android:textSize="@dimen/subtitle_text"
                android:text="Activities">
            </TextView>
+           <TextView
+               android:id="@+id/percent_complete"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Percent complete: (Select a cort)"
+               android:layout_margin="@dimen/margin_5">
+           </TextView>
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"

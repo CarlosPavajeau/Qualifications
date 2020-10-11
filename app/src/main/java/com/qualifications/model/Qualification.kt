@@ -35,7 +35,7 @@ class Qualification : Serializable {
         }
     }
 
-    private val totalActivitiesPercent: Float
+    val totalActivitiesPercent: Float
     get() {
         if (activities.size == 0) {
             return 0.0F

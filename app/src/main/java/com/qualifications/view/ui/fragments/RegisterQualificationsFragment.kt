@@ -62,7 +62,9 @@ class RegisterQualificationsFragment : Fragment() {
             }
 
             if (currentCort != 0) {
-                activityAdapter.updateData(subject.qualifications[currentCort - 1].activities)
+                val qualification = subject.qualifications[currentCort - 1]
+                activityAdapter.updateData(qualification.activities)
+                percent_complete.text = "Percent complete: ${qualification.totalActivitiesPercent * 100}%"
             }
         }
 
