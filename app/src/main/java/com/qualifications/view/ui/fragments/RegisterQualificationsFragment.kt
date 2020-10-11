@@ -53,7 +53,7 @@ class RegisterQualificationsFragment : Fragment(), ActivityListener {
 
         subject_name.text = "Subject name: ${subject.name}"
 
-        cort_radios.setOnCheckedChangeListener { group, checkedId ->
+        cort_radios.setOnCheckedChangeListener { _ , checkedId ->
 
             currentCort = when (checkedId) {
                 R.id.cort_1 -> {
