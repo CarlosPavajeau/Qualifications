@@ -84,4 +84,12 @@
             </ImageButton>
         </LinearLayout>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginRight="15dp"
+        android:background="@android:color/darker_gray"
+        android:alpha="0.5">
+    </View>
 </LinearLayout>

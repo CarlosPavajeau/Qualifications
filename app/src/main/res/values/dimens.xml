@@ -6,4 +6,5 @@
     <dimen name="zero_dp">0dp</dimen>
     <dimen name="padding_10">10dp</dimen>
     <dimen name="subtitle_text">17sp</dimen>
+    <dimen name="margin_15">15dp</dimen>
 </resources>
