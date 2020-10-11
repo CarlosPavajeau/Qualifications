@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.qualifications.R
 import com.qualifications.model.Activity
@@ -70,6 +71,7 @@ class RegisterActivityFragment : DialogFragment() {
         if (qualification.addActivity(activity)) {
             if (subjectViewModel.saveActivity(activity, qualification.id)) {
                 dismiss()
+                findNavController().navigate(R.id.subjectsFragment)
             }
         }
     }

@@ -43,7 +43,11 @@
         android:id="@+id/registerActivityFragment"
         android:name="com.qualifications.view.ui.fragments.RegisterActivityFragment"
         android:label="fragment_register_activity"
-        tools:layout="@layout/fragment_register_activity" />
+        tools:layout="@layout/fragment_register_activity" >
+        <action
+            android:id="@+id/action_registerActivityFragment_to_registerQualificationsFragment"
+            app:destination="@id/registerQualificationsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editActivityFragment"
         android:name="com.qualifications.view.ui.fragments.EditActivityFragment"
