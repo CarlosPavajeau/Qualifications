@@ -44,14 +44,14 @@
                     android:layout_width="match_parent"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Note: %1$d">
+                    android:text="@string/activity_note_item">
                 </TextView>
                 <TextView
                     android:layout_weight="1"
                     android:id="@+id/activity_percent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Percent: %1$d">
+                    android:text="@string/activity_percent_item">
                 </TextView>
             </LinearLayout>
         </LinearLayout>

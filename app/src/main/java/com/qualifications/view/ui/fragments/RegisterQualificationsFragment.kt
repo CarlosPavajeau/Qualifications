@@ -51,7 +51,7 @@ class RegisterQualificationsFragment : Fragment(), ActivityListener {
             adapter = activityAdapter
         }
 
-        subject_name.text = "Subject name: ${subject.name}"
+        subject_name.text = view.context.getString(R.string.register_qualification_subject_name_text, subject.name)
 
         cort_radios.setOnCheckedChangeListener { _ , checkedId ->
 
@@ -71,7 +71,7 @@ class RegisterQualificationsFragment : Fragment(), ActivityListener {
             if (currentCort != 0) {
                 val qualification = subject.qualifications[currentCort - 1]
                 activityAdapter.updateData(qualification.activities)
-                percent_complete.text = "Percent complete: ${qualification.totalActivitiesPercent * 100}%"
+                percent_complete.text = view.context.getString(R.string.percent_complete_with_cort, qualification.totalActivitiesPercent * 100)
             }
         }
 
@@ -93,7 +93,7 @@ class RegisterQualificationsFragment : Fragment(), ActivityListener {
             val qualification = subject.qualifications[currentCort - 1]
             qualification.activities.removeIf { it.id == activity.id }
             activityAdapter.updateData(qualification.activities)
-            percent_complete.text = "Percent complete: ${qualification.totalActivitiesPercent * 100}%"
+            percent_complete.text = context?.getString(R.string.percent_complete_with_cort, qualification.totalActivitiesPercent * 100)
         }
     }
 }

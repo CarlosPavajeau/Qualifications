@@ -34,12 +34,13 @@ class StatisticsFragment : Fragment() {
 
         subjectViewModel.subjects.observe(viewLifecycleOwner, { it ->
             if (it.isNotEmpty()) {
-                val subjectsDefinitive = ((it.map { it.definitive }).reduce { acc, fl -> acc + fl } / it.size)
-                definitive.text = "Definitive: $subjectsDefinitive"
-                registered_subjects.text = "Registered subjects: ${it.size}"
+                val context = view.context
 
-                approved_subjects.text = "Approved subjects: ${it.filter { it.definitive >= 3.0 }.size}"
-                failed_subjects.text = "Failed subjects: ${it.filter { it.definitive < 3.0 }.size}"
+                val subjectsDefinitive = ((it.map { it.definitive }).reduce { acc, fl -> acc + fl } / it.size)
+                definitive.text = context.getString(R.string.statistics_definitive_text, subjectsDefinitive)
+                registered_subjects.text = context.getString(R.string.statistics_registered_subjects_text, it.size)
+                approved_subjects.text = context.getString(R.string.statistics_approved_subjects_text, it.filter { it.definitive >= 3.0 }.size)
+                failed_subjects.text = context.getString(R.string.statistics_failed_subjects_text, it.filter { it.definitive < 3.0 }.size)
             }
         })
     }

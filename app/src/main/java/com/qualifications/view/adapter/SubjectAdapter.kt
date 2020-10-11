@@ -24,10 +24,17 @@ class SubjectAdapter(private val subjectListener: SubjectListener) : RecyclerVie
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val subject = subjects[position]
-        holder.code.text = "Code: " + subject.code
+        val context = holder.code.context
+        holder.code.text = context.getString(R.string.subject_item_code, subject.code)
         holder.name.text = subject.name
-        holder.qualifications.text = "Qualifications: ${subject.qualifications[0].total}, ${subject.qualifications[1].total}, ${subject.qualifications[2].total}"
-        holder.definitive.text = "Definitive: ${subject.definitive}"
+        holder.qualifications.text = context.getString(
+            R.string.subject_qualifications_item,
+            subject.qualifications[0].total,
+            subject.qualifications[1].total,
+            subject.qualifications[2].total
+        )
+
+        holder.definitive.text = context.getString(R.string.subject_definitive_item, subject.definitive)
 
         holder.itemView.setOnClickListener {
             subjectListener.onSubjectTap(subject, position)

@@ -3,7 +3,6 @@ package com.qualifications.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
@@ -26,10 +25,11 @@ class ActivityAdapter(private val activityListener: ActivityListener) : Recycler
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val activity = activities[position]
+        val context = holder.name.context
 
         holder.name.text = activity.name
-        holder.note.text = "Note: ${activity.note}"
-        holder.percent.text = "Percent: ${activity.percent * 100}%"
+        holder.note.text = context.getString(R.string.activity_note_item, activity.note)
+        holder.percent.text = context.getString(R.string.activity_percent_item, activity.percent * 100)
 
         holder.deleteButton.setOnClickListener {
             activityListener.onActivityDeleteButtonTap(activity, position)
