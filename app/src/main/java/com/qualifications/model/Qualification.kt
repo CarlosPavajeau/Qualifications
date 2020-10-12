@@ -13,7 +13,7 @@ class Qualification : Serializable {
 
     var activities: ArrayList<Activity> = ArrayList()
 
-    private val totalPartial: Float
+    val totalPartial: Float
     get() {
         if (activities.size == 0) {
             return 0.0F

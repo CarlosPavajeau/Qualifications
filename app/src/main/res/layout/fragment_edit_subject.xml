@@ -36,16 +36,19 @@
                 android:id="@+id/subject_name_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:hint="@string/name_field_label"
                 app:helperTextEnabled="true"
                 app:helperText="@string/subject_name_helper_text">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:inputType="text">
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/update_subject_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,8 +56,11 @@
             android:textColorHint="@color/colorPrimary"
             android:backgroundTint="@color/colorPrimary"
             android:textColor="@android:color/white"
+            app:icon="@drawable/ic_round_update"
+            app:iconTint="@android:color/white"
+            app:iconGravity="textStart"
             android:text="@string/update_subject_button_text">
-        </Button>
+        </com.google.android.material.button.MaterialButton>
     </LinearLayout>
 
 </FrameLayout>

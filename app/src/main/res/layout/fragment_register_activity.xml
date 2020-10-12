@@ -29,18 +29,21 @@
                 android:id="@+id/activity_name_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:hint="@string/activity_name_field"
                 app:helperTextEnabled="true"
                 app:helperText="@string/activity_name_helper_text">
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:inputType="text">
                 </EditText>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/activity_note_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:hint="@string/activity_note_field"
                 app:helperTextEnabled="true"
                 app:helperText="@string/activity_note_helper_text">
@@ -54,6 +57,7 @@
                 android:id="@+id/activity_percent_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:hint="@string/activity_percent_field"
                 app:helperTextEnabled="true"
                 app:helperText="@string/activity_percent_helper_text">
@@ -64,16 +68,18 @@
                 </EditText>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/register_activity_button"
-            android:layout_marginTop="@dimen/padding_10"
+            android:layout_marginTop="@dimen/margin_15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/colorPrimary"
             android:backgroundTint="@color/colorPrimary"
             android:textColor="@android:color/white"
+            app:icon="@drawable/ic_baseline_add_circle"
+            app:iconGravity="textStart"
             android:text="@string/register_activity_button_text">
-        </Button>
+        </com.google.android.material.button.MaterialButton>
     </LinearLayout>
 
 </FrameLayout>

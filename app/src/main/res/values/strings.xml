@@ -37,4 +37,7 @@
     <string name="edit_activity_title">Edit activity</string>
     <string name="register_activity_button_text">Register activity</string>
     <string name="update_activity_button_text">Update activity</string>
+    <string name="activities_title">Activities</string>
+    <string name="cort_definitive_without_cort">Cort definitive: (Select a cort)</string>
+    <string name="cort_definitive_with_cort">Cort definitive: %1$.2f</string>
 </resources>

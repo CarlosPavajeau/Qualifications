@@ -32,9 +32,9 @@ class SubjectAdapter(private val subjectListener: SubjectListener) : RecyclerVie
         holder.name.text = subject.name
         holder.qualifications.text = context.getString(
             R.string.subject_qualifications_item,
-            subject.qualifications[0].total,
-            subject.qualifications[1].total,
-            subject.qualifications[2].total
+            subject.qualifications[0].totalPartial,
+            subject.qualifications[1].totalPartial,
+            subject.qualifications[2].totalPartial
         )
 
         holder.definitive.text = context.getString(R.string.subject_definitive_item, subject.definitive)

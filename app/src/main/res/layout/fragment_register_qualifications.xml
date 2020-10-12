@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.ui.fragments.RegisterQualificationsFragment">
 
    <LinearLayout
@@ -73,7 +74,7 @@
                    </RadioButton>
                </RadioGroup>
            </LinearLayout>
-           <Button
+           <com.google.android.material.button.MaterialButton
                android:id="@+id/add_activity_button"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -83,8 +84,10 @@
                android:layout_gravity="center"
                android:textColorHint="@color/colorPrimary"
                android:backgroundTint="@color/colorPrimary"
+               app:icon="@drawable/ic_baseline_add_circle"
+               app:iconGravity="textStart"
                android:textColor="@android:color/white">
-           </Button>
+           </com.google.android.material.button.MaterialButton>
            <TextView
                android:id="@+id/title_activity"
                android:layout_width="match_parent"
@@ -92,19 +95,37 @@
                android:layout_marginTop="@dimen/margin_5"
                android:textAlignment="center"
                android:textSize="@dimen/subtitle_text"
-               android:text="Activities">
-           </TextView>
-           <TextView
-               android:id="@+id/percent_complete"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="@string/percent_complete_without_cort"
-               android:layout_margin="@dimen/margin_15">
+               android:text="@string/activities_title">
            </TextView>
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:orientation="vertical">
+               android:orientation="horizontal"
+               android:layout_margin="@dimen/padding_10">
+               <TextView
+                   android:id="@+id/percent_complete"
+                   android:layout_width="@dimen/zero_dp"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content"
+                   android:text="@string/percent_complete_without_cort"
+                   android:textSize="@dimen/small_text"
+                   android:layout_marginEnd="@dimen/margin_15"
+                   tools:ignore="SmallSp">
+               </TextView>
+               <TextView
+                   android:id="@+id/cort_definitive"
+                   android:layout_width="@dimen/zero_dp"
+                   android:layout_weight="1"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/small_text"
+                   android:text="@string/cort_definitive_without_cort">
+               </TextView>
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:layout_marginTop="@dimen/margin_15">
                <androidx.recyclerview.widget.RecyclerView
                    android:id="@+id/register_activities"
                    android:layout_width="match_parent"
