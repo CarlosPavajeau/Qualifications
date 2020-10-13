@@ -39,5 +39,5 @@
     <string name="update_activity_button_text">Update activity</string>
     <string name="activities_title">Activities</string>
     <string name="cort_definitive_without_cort">Cort definitive: (Select a cort)</string>
-    <string name="cort_definitive_with_cort">Cort definitive: %1$.2f</string>
+    <string name="cort_definitive_with_cort" formatted="false">Cort definitive: %1$.2f</string>
 </resources>
