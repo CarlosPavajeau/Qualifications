@@ -72,8 +72,10 @@ class RegisterQualificationsFragment : Fragment(), ActivityListener {
                 val qualification = subject.qualifications[currentCort - 1]
                 activityAdapter.updateData(qualification.activities)
                 val totalActivitiesPercent: Float = qualification.totalActivitiesPercent * 100
+                val totalPartial: Float = qualification.totalPartial
+
                 percent_complete.text = view.context.getString(R.string.percent_complete_with_cort, totalActivitiesPercent)
-                cort_definitive.text = view.context.getString(R.string.cort_definitive_with_cort, qualification.totalPartial)
+                cort_definitive.text = view.context.getString(R.string.cort_definitive_with_cort, totalPartial)
             }
         }
 

@@ -36,11 +36,15 @@ class StatisticsFragment : Fragment() {
             if (it.isNotEmpty()) {
                 val context = view.context
 
-                val subjectsDefinitive = ((it.map { it.definitive }).reduce { acc, fl -> acc + fl } / it.size)
+                val subjectsDefinitive: Float = ((it.map { it.definitive }).reduce { acc, fl -> acc + fl } / it.size)
+                val registeredSubjects: Int = it.size
+                val approvedSubjects: Int = it.filter { it.definitive >= 3.0 }.size
+                val failedSubjects: Int = it.filter { it.definitive < 3.0 }.size
+
                 definitive.text = context.getString(R.string.statistics_definitive_text, subjectsDefinitive)
-                registered_subjects.text = context.getString(R.string.statistics_registered_subjects_text, it.size)
-                approved_subjects.text = context.getString(R.string.statistics_approved_subjects_text, it.filter { it.definitive >= 3.0 }.size)
-                failed_subjects.text = context.getString(R.string.statistics_failed_subjects_text, it.filter { it.definitive < 3.0 }.size)
+                registered_subjects.text = context.getString(R.string.statistics_registered_subjects_text, registeredSubjects)
+                approved_subjects.text = context.getString(R.string.statistics_approved_subjects_text, approvedSubjects)
+                failed_subjects.text = context.getString(R.string.statistics_failed_subjects_text, failedSubjects)
             }
         })
     }
