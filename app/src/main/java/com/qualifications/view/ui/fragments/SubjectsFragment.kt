@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qualifications.R
 import com.qualifications.model.Subject
+import com.qualifications.network.ApiCallback
 import com.qualifications.view.adapter.SubjectAdapter
 import com.qualifications.view.adapter.SubjectListener
 import com.qualifications.viewmodel.SubjectViewModel
@@ -36,7 +37,7 @@ class SubjectsFragment : Fragment(), SubjectListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        subjectViewModel = SubjectViewModel(view.context)
+        subjectViewModel = SubjectViewModel()
         subjectViewModel.refresh()
 
         subjectAdapter = SubjectAdapter(this)
@@ -63,9 +64,15 @@ class SubjectsFragment : Fragment(), SubjectListener {
     }
 
     override fun onSubjectDeleteButtonTap(subject: Subject , index: Int) {
-        if (subjectViewModel.deleteSubject(subject)) {
-            subjectViewModel.refresh()
-        }
+        subjectViewModel.deleteSubject(subject, object : ApiCallback<Subject> {
+            override fun onFail(exception: Throwable) {
+                return
+            }
+
+            override fun onSuccess(result: Subject?) {
+                subjectViewModel.refresh()
+            }
+        })
     }
 
     override fun onSubjectEditButtonTap(subject: Subject , index: Int) {

@@ -1,23 +1,14 @@
 package com.qualifications.model
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class Subject(val code: String, val name: String) : Serializable {
+class Subject(@SerializedName("code") var code: String,@SerializedName("name") var name: String) : Serializable {
+    @SerializedName("qualifications")
     val qualifications: ArrayList<Qualification> = ArrayList()
 
-    init {
-        qualifications.addAll(arrayListOf(Qualification(), Qualification(), Qualification()))
-        var cort = 1
-        qualifications.forEach { it.cort = cort++ }
-    }
-
-    val definitive: Float
-    get() {
-        if (qualifications.size == 0) {
-            return 0.0F
-        }
-        return qualifications.map { q -> q.total }.reduce { acc, fl -> acc + fl }
-    }
+    @SerializedName("definitive")
+    var definitive: Float = 0.0F
 
     fun addQualification(qualification: Qualification): Boolean {
         if (qualification.cort > 3 || qualification.cort <= 0)

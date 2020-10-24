@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.qualifications.R
 import com.qualifications.model.Subject
+import com.qualifications.network.ApiCallback
 import com.qualifications.viewmodel.SubjectViewModel
 import kotlinx.android.synthetic.main.fragment_edit_subject.*
 
@@ -32,7 +33,7 @@ class EditSubjectFragment : Fragment() {
         super.onViewCreated(view , savedInstanceState)
 
         subject = arguments?.getSerializable("subject") as Subject
-        subjectViewModel = SubjectViewModel(view.context)
+        subjectViewModel = SubjectViewModel()
 
         subject_code.text = view.context.getString(R.string.subject_item_code, subject.code)
         subject_name_field.editText?.setText(subject.name)
@@ -45,9 +46,16 @@ class EditSubjectFragment : Fragment() {
     private fun updateSubject() {
         if (subject_name_field.editText?.text?.isNotBlank()!!) {
             subject = Subject(subject.code, subject_name_field.editText?.text.toString())
-            if (subjectViewModel.updateSubject(subject)) {
-                findNavController().navigate(R.id.subjectsFragment)
-            }
+
+            subjectViewModel.updateSubject(subject, object : ApiCallback<Subject> {
+                override fun onFail(exception: Throwable) {
+                    return
+                }
+
+                override fun onSuccess(result: Subject?) {
+                    findNavController().navigate(R.id.subjectsFragment)
+                }
+            })
         }
     }
 }

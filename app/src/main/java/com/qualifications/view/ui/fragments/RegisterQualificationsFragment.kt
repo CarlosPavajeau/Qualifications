@@ -14,6 +14,7 @@ import com.qualifications.R
 import com.qualifications.model.Activity
 import com.qualifications.model.Qualification
 import com.qualifications.model.Subject
+import com.qualifications.network.ApiCallback
 import com.qualifications.view.adapter.ActivityAdapter
 import com.qualifications.view.adapter.ActivityListener
 import com.qualifications.viewmodel.SubjectViewModel
@@ -42,7 +43,7 @@ class RegisterQualificationsFragment : Fragment(), ActivityListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        subjectViewModel = SubjectViewModel(view.context)
+        subjectViewModel = SubjectViewModel()
         activityAdapter = ActivityAdapter(this)
 
         subject = arguments?.getSerializable("subject") as Subject
@@ -94,11 +95,22 @@ class RegisterQualificationsFragment : Fragment(), ActivityListener {
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onActivityDeleteButtonTap(activity: Activity , position: Int) {
-        if (subjectViewModel.deleteActivity(activity.id)) {
-            val qualification = subject.qualifications[currentCort - 1]
-            qualification.activities.removeIf { it.id == activity.id }
-            activityAdapter.updateData(qualification.activities)
-            percent_complete.text = context?.getString(R.string.percent_complete_with_cort, qualification.totalActivitiesPercent * 100)
-        }
+        subjectViewModel.deleteActivity(activity.id, object : ApiCallback<Activity> {
+            override fun onFail(exception: Throwable) {
+                return
+            }
+
+            override fun onSuccess(result: Activity?) {
+                if (result != null) {
+                    val qualification = subject.qualifications[currentCort - 1]
+                    qualification.activities.removeIf { it.id == activity.id }
+                    activityAdapter.updateData(qualification.activities)
+
+                    qualification.totalActivitiesPercent -= result.percent
+                    percent_complete.text = context?.getString(R.string.percent_complete_with_cort, qualification.totalActivitiesPercent * 100)
+                }
+
+            }
+        })
     }
 }

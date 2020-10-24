@@ -29,7 +29,7 @@ class StatisticsFragment : Fragment() {
     override fun onViewCreated(view: View , savedInstanceState: Bundle?) {
         super.onViewCreated(view , savedInstanceState)
 
-        subjectViewModel = SubjectViewModel(view.context)
+        subjectViewModel = SubjectViewModel()
         subjectViewModel.refresh()
 
         subjectViewModel.subjects.observe(viewLifecycleOwner, { it ->
