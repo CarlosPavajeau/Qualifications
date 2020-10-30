@@ -9,25 +9,28 @@ import retrofit2.Response
 class QualificationsService {
     private val retrofit = ServiceBuilder.buildService(QualificationsAPI::class.java)
 
-    fun getSubjects(apiCallback: ApiCallback<List<Subject>>) {
-        retrofit.getSubjects().enqueue(
-            object : Callback<List<Subject>> {
-                override fun onFailure(call: Call<List<Subject>> , t: Throwable) {
-                    apiCallback.onFail(t)
-                }
 
-                override fun onResponse(
-                    call: Call<List<Subject>> ,
-                    response: Response<List<Subject>>
-                ) {
-                    val response = response.body()
-                    apiCallback.onSuccess(response)
+    fun getSubjects(apiCallback: ApiCallback<List<Subject>>) {
+        val sessionManager = ServiceBuilder.context?.let { SessionManager(it) }
+        sessionManager?.fetchUserId()?.let {
+            retrofit.getSubjects(it).enqueue(
+                object : Callback<List<Subject>> {
+                    override fun onFailure(call: Call<List<Subject>> , t: Throwable) {
+                        apiCallback.onFail(t)
+                    }
+
+                    override fun onResponse(
+                        call: Call<List<Subject>> ,
+                        response: Response<List<Subject>>
+                    ) {
+                        apiCallback.onSuccess(response.body())
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 
-    fun saveSubject(subject: Subject, apiCallback: ApiCallback<Subject>) {
+    fun saveSubject(subject: Subject , apiCallback: ApiCallback<Subject>) {
         retrofit.saveSubject(subject).enqueue(
             object : Callback<Subject> {
                 override fun onFailure(call: Call<Subject> , t: Throwable) {
@@ -42,7 +45,7 @@ class QualificationsService {
         )
     }
 
-    fun saveActivity(activity: Activity, apiCallback: ApiCallback<Activity>) {
+    fun saveActivity(activity: Activity , apiCallback: ApiCallback<Activity>) {
         retrofit.saveActivity(activity).enqueue(
             object : Callback<Activity> {
                 override fun onFailure(call: Call<Activity> , t: Throwable) {
@@ -57,8 +60,8 @@ class QualificationsService {
         )
     }
 
-    fun updateSubject(subject: Subject, apiCallback: ApiCallback<Subject>) {
-        retrofit.updateSubject(subject.code, subject).enqueue(
+    fun updateSubject(subject: Subject , apiCallback: ApiCallback<Subject>) {
+        retrofit.updateSubject(subject.code , subject).enqueue(
             object : Callback<Subject> {
                 override fun onFailure(call: Call<Subject> , t: Throwable) {
                     apiCallback.onFail(t)
@@ -71,8 +74,8 @@ class QualificationsService {
         )
     }
 
-    fun updateActivity(activity: Activity, apiCallback: ApiCallback<Activity>) {
-        retrofit.updateActivity(activity.id, activity).enqueue(
+    fun updateActivity(activity: Activity , apiCallback: ApiCallback<Activity>) {
+        retrofit.updateActivity(activity.id , activity).enqueue(
             object : Callback<Activity> {
                 override fun onFailure(call: Call<Activity> , t: Throwable) {
                     apiCallback.onFail(t)
@@ -85,7 +88,7 @@ class QualificationsService {
         )
     }
 
-    fun deleteSubject(subjectCode: String, apiCallback: ApiCallback<Subject>) {
+    fun deleteSubject(subjectCode: String , apiCallback: ApiCallback<Subject>) {
         retrofit.deleteSubject(subjectCode).enqueue(
             object : Callback<Subject> {
                 override fun onFailure(call: Call<Subject> , t: Throwable) {
@@ -99,7 +102,7 @@ class QualificationsService {
         )
     }
 
-    fun deleteActivity(activityId: Int, apiCallback: ApiCallback<Activity>) {
+    fun deleteActivity(activityId: Int , apiCallback: ApiCallback<Activity>) {
         retrofit.deleteActivity(activityId).enqueue(
             object : Callback<Activity> {
                 override fun onFailure(call: Call<Activity> , t: Throwable) {

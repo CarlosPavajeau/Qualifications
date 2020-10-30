@@ -6,4 +6,7 @@
     <color name="colorDelete">#FF4763</color>
     <color name="yellowGreen">#DFCC74</color>
     <color name="successGreen">#157A6E</color>
+    <color name="mid_gray">#FF5B5D63</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
 </resources>

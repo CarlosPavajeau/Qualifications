@@ -22,7 +22,7 @@ import com.qualifications.viewmodel.UserViewModel
  * create an instance of this fragment.
  */
 class LoginFragment : Fragment() {
-    private lateinit var userOrPasswordInput: TextInputLayout
+    private lateinit var userOrEmailInput: TextInputLayout
     private lateinit var passwordInput: TextInputLayout
     private lateinit var userViewModel: UserViewModel
 
@@ -38,7 +38,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View , savedInstanceState: Bundle?) {
         super.onViewCreated(view , savedInstanceState)
 
-        userOrPasswordInput = view.findViewById(R.id.et_user_or_email)
+        userOrEmailInput = view.findViewById(R.id.et_user_or_email)
         passwordInput = view.findViewById(R.id.et_password)
         userViewModel = UserViewModel()
 
@@ -47,6 +47,7 @@ class LoginFragment : Fragment() {
         sessionManager?.fetchAuthToken()?.let {
             if (it.isNotBlank()) {
                 findNavController().navigate(R.id.subjectsFragment)
+
             } else {
                 println("No user token")
             }
@@ -54,7 +55,7 @@ class LoginFragment : Fragment() {
 
         val btLogin = view.findViewById<Button>(R.id.bt_login)
         btLogin.setOnClickListener {
-            val userOrPassword = userOrPasswordInput.editText?.text.toString()
+            val userOrPassword = userOrEmailInput.editText?.text.toString()
             val password = passwordInput.editText?.text.toString()
 
             if (userOrPassword.isNotEmpty() && password.isNotEmpty()) {

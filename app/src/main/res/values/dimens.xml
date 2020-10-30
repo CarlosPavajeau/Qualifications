@@ -8,4 +8,11 @@
     <dimen name="subtitle_text">17sp</dimen>
     <dimen name="margin_15">15dp</dimen>
     <dimen name="small_text">11sp</dimen>
+
+    <dimen name="large_spacing">80dp</dimen>
+    <dimen name="small_spacing">20dp</dimen>
+    <dimen name="medium_spacing">50dp</dimen>
+    <dimen name="spacing_25">25dp</dimen>
+    <dimen name="spacing_45">45dp</dimen>
+    <dimen name="extra_small_spacing">10dp</dimen>
 </resources>

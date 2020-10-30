@@ -40,4 +40,18 @@
     <string name="activities_title">Activities</string>
     <string name="cort_definitive_without_cort">Cort definitive: (Select a cort)</string>
     <string name="cort_definitive_with_cort">Cort definitive: %1$.2f</string>
+
+    <string name="login_title">Sign in</string>
+    <string name="user_or_email_hint">Username/Email</string>
+    <string name="user_or_email_text_helper">Enter your username o email</string>
+    <string name="password_helper_text">Enter your password</string>
+    <string name="password_hint">Password</string>
+    <string name="keep_session_hint">Keep Session</string>
+    <string name="forgotten_password_text">Forgot password?</string>
+    <string name="not_register_text">Not register?</string>
+    <string name="register_user_title">Register user</string>
+    <string name="email_hint">Email</string>
+    <string name="email_text_helper">Enter your email</string>
+    <string name="username_hint">Username</string>
+    <string name="username_helper_text">Enter your username</string>
 </resources>
