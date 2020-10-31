@@ -1,20 +1,19 @@
 package com.qualifications.view.ui.fragments
 
-import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.qualifications.R
 import com.qualifications.model.Activity
-import com.qualifications.model.Qualification
 import com.qualifications.network.ApiCallback
 import com.qualifications.viewmodel.SubjectViewModel
 import kotlinx.android.synthetic.main.fragment_edit_activity.*
+import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass.
@@ -33,7 +32,7 @@ class EditActivityFragment : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setStyle(STYLE_NORMAL, R.style.FullScreenDialog)
+        setStyle(STYLE_NORMAL , R.style.FullScreenDialog)
     }
 
     override fun onCreateView(
@@ -49,7 +48,7 @@ class EditActivityFragment : DialogFragment() {
 
         activity = arguments?.getSerializable("activity") as Activity
 
-        subjectViewModel = SubjectViewModel()
+        subjectViewModel = SubjectViewModel(view.context)
 
         nameField = view.findViewById(R.id.activity_name_field)
         noteField = view.findViewById(R.id.activity_note_field)
@@ -76,12 +75,12 @@ class EditActivityFragment : DialogFragment() {
         activity.note = noteText
         activity.percent = percentText
 
-        subjectViewModel.updateActivity(activity, object : ApiCallback<Activity> {
-            override fun onFail(exception: Throwable) {
+        subjectViewModel.updateActivity(activity , object : ApiCallback<Activity> {
+            override fun onFailure(exception: Throwable) {
                 return
             }
 
-            override fun onSuccess(result: Activity?) {
+            override fun onResponse(result: Response<Activity>) {
                 dismiss()
                 findNavController().navigate(R.id.subjectsFragment)
             }

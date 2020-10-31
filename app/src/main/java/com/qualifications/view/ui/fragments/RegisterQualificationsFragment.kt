@@ -2,30 +2,30 @@ package com.qualifications.view.ui.fragments
 
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qualifications.R
 import com.qualifications.model.Activity
-import com.qualifications.model.Qualification
 import com.qualifications.model.Subject
 import com.qualifications.network.ApiCallback
 import com.qualifications.view.adapter.ActivityAdapter
 import com.qualifications.view.adapter.ActivityListener
 import com.qualifications.viewmodel.SubjectViewModel
 import kotlinx.android.synthetic.main.fragment_register_qualifications.*
+import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass.
  * Use the [RegisterQualificationsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class RegisterQualificationsFragment : Fragment(), ActivityListener {
+class RegisterQualificationsFragment : Fragment() , ActivityListener {
     private lateinit var subject: Subject
     private var currentCort: Int = 0
 
@@ -33,26 +33,27 @@ class RegisterQualificationsFragment : Fragment(), ActivityListener {
     private lateinit var activityAdapter: ActivityAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater , container: ViewGroup? ,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register_qualifications, container, false)
+        return inflater.inflate(R.layout.fragment_register_qualifications , container , false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(view: View , savedInstanceState: Bundle?) {
+        super.onViewCreated(view , savedInstanceState)
 
-        subjectViewModel = SubjectViewModel()
+        subjectViewModel = SubjectViewModel(view.context)
         activityAdapter = ActivityAdapter(this)
 
         subject = arguments?.getSerializable("subject") as Subject
         register_activities.apply {
-            layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(view.context , LinearLayoutManager.VERTICAL , false)
             adapter = activityAdapter
         }
 
-        subject_name.text = view.context.getString(R.string.register_qualification_subject_name_text, subject.name)
+        subject_name.text =
+            view.context.getString(R.string.register_qualification_subject_name_text , subject.name)
 
         cort_radios.setOnCheckedChangeListener { _ , checkedId ->
 
@@ -75,41 +76,50 @@ class RegisterQualificationsFragment : Fragment(), ActivityListener {
                 val totalActivitiesPercent: Float = qualification.totalActivitiesPercent * 100
                 val totalPartial: Float = qualification.totalPartial
 
-                percent_complete.text = view.context.getString(R.string.percent_complete_with_cort, totalActivitiesPercent)
-                cort_definitive.text = view.context.getString(R.string.cort_definitive_with_cort, totalPartial)
+                percent_complete.text = view.context.getString(
+                    R.string.percent_complete_with_cort ,
+                    totalActivitiesPercent
+                )
+                cort_definitive.text =
+                    view.context.getString(R.string.cort_definitive_with_cort , totalPartial)
             }
         }
 
         add_activity_button.setOnClickListener {
             if (currentCort != 0) {
                 val bundle = bundleOf("qualification" to subject.qualifications[currentCort - 1])
-                findNavController().navigate(R.id.registerActivityFragment, bundle)
+                findNavController().navigate(R.id.registerActivityFragment , bundle)
             }
         }
     }
 
     override fun onActivityEditButtonTap(activity: Activity , position: Int) {
         val bundle = bundleOf("activity" to activity)
-        findNavController().navigate(R.id.editActivityFragment, bundle)
+        findNavController().navigate(R.id.editActivityFragment , bundle)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onActivityDeleteButtonTap(activity: Activity , position: Int) {
-        subjectViewModel.deleteActivity(activity.id, object : ApiCallback<Activity> {
-            override fun onFail(exception: Throwable) {
+        subjectViewModel.deleteActivity(activity.id , object : ApiCallback<Activity> {
+            override fun onFailure(exception: Throwable) {
                 return
             }
 
-            override fun onSuccess(result: Activity?) {
-                if (result != null) {
-                    val qualification = subject.qualifications[currentCort - 1]
-                    qualification.activities.removeIf { it.id == activity.id }
-                    activityAdapter.updateData(qualification.activities)
+            override fun onResponse(result: Response<Activity>) {
+                if (result.isSuccessful) {
+                    val body = result.body()
+                    if (body != null) {
+                        val qualification = subject.qualifications[currentCort - 1]
+                        qualification.activities.removeIf { it.id == activity.id }
+                        activityAdapter.updateData(qualification.activities)
 
-                    qualification.totalActivitiesPercent -= result.percent
-                    percent_complete.text = context?.getString(R.string.percent_complete_with_cort, qualification.totalActivitiesPercent * 100)
+                        qualification.totalActivitiesPercent -= body.percent
+                        percent_complete.text = context?.getString(
+                            R.string.percent_complete_with_cort ,
+                            qualification.totalActivitiesPercent * 100
+                        )
+                    }
                 }
-
             }
         })
     }

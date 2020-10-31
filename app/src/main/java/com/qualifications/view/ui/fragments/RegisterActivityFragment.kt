@@ -1,11 +1,11 @@
 package com.qualifications.view.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.qualifications.R
@@ -14,6 +14,7 @@ import com.qualifications.model.Qualification
 import com.qualifications.network.ApiCallback
 import com.qualifications.viewmodel.SubjectViewModel
 import kotlinx.android.synthetic.main.fragment_register_activity.*
+import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass.
@@ -32,23 +33,23 @@ class RegisterActivityFragment : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setStyle(STYLE_NORMAL, R.style.FullScreenDialog)
+        setStyle(STYLE_NORMAL , R.style.FullScreenDialog)
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater , container: ViewGroup? ,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register_activity, container, false)
+        return inflater.inflate(R.layout.fragment_register_activity , container , false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(view: View , savedInstanceState: Bundle?) {
+        super.onViewCreated(view , savedInstanceState)
 
         qualification = arguments?.getSerializable("qualification") as Qualification
 
-        subjectViewModel = SubjectViewModel()
+        subjectViewModel = SubjectViewModel(view.context)
 
         nameField = view.findViewById(R.id.activity_name_field)
         noteField = view.findViewById(R.id.activity_note_field)
@@ -70,12 +71,12 @@ class RegisterActivityFragment : DialogFragment() {
         activity.percent = percentText
         activity.qualificationId = qualification.id
 
-        subjectViewModel.saveActivity(activity, object : ApiCallback<Activity> {
-            override fun onFail(exception: Throwable) {
+        subjectViewModel.saveActivity(activity , object : ApiCallback<Activity> {
+            override fun onFailure(exception: Throwable) {
                 return
             }
 
-            override fun onSuccess(result: Activity?) {
+            override fun onResponse(result: Response<Activity>) {
                 dismiss()
                 findNavController().navigate(R.id.subjectsFragment)
             }

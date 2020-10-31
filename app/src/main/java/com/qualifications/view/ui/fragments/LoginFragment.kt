@@ -1,5 +1,6 @@
 package com.qualifications.view.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +13,11 @@ import com.qualifications.R
 import com.qualifications.model.LoginRequest
 import com.qualifications.model.User
 import com.qualifications.network.ApiCallback
-import com.qualifications.network.ServiceBuilder
 import com.qualifications.network.SessionManager
+import com.qualifications.view.ui.activities.MainActivity
 import com.qualifications.viewmodel.UserViewModel
+import kotlinx.android.synthetic.main.fragment_login.*
+import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass.
@@ -25,6 +28,7 @@ class LoginFragment : Fragment() {
     private lateinit var userOrEmailInput: TextInputLayout
     private lateinit var passwordInput: TextInputLayout
     private lateinit var userViewModel: UserViewModel
+    private lateinit var sessionManager: SessionManager
 
 
     override fun onCreateView(
@@ -40,13 +44,15 @@ class LoginFragment : Fragment() {
 
         userOrEmailInput = view.findViewById(R.id.et_user_or_email)
         passwordInput = view.findViewById(R.id.et_password)
-        userViewModel = UserViewModel()
+        userViewModel = UserViewModel(view.context)
 
-        val sessionManager = ServiceBuilder.context?.let { SessionManager(it) }
+        sessionManager = SessionManager(view.context)
 
-        sessionManager?.fetchAuthToken()?.let {
+        sessionManager.fetchAuthToken()?.let {
             if (it.isNotBlank()) {
-                findNavController().navigate(R.id.subjectsFragment)
+                val intent = Intent(view.context , MainActivity::class.java)
+                startActivity(intent)
+
 
             } else {
                 println("No user token")
@@ -61,23 +67,34 @@ class LoginFragment : Fragment() {
             if (userOrPassword.isNotEmpty() && password.isNotEmpty()) {
                 val loginRequest = LoginRequest(userOrPassword , password)
                 userViewModel.login(loginRequest , object : ApiCallback<User> {
-                    override fun onSuccess(result: User?) {
-                        if (result != null) {
-                            val sessionManager = ServiceBuilder.context?.let { SessionManager(it) }
-                            sessionManager?.saveAuthToken(result.token , result.id)
-                            findNavController().navigate(R.id.subjectsFragment)
-                        } else {
-                            println("User are null")
-                        }
+                    override fun onResponse(result: Response<User>) {
+                        if (result.isSuccessful) {
+                            val body = result.body()
+                            if (body != null) {
+                                sessionManager.saveAuthToken(body.token , body.id)
 
+                                val intent = Intent(view.context , MainActivity::class.java)
+                                startActivity(intent)
+                            } else {
+                                tv_sign_in_error.text = result.errorBody()?.string()
+                                tv_sign_in_error.visibility = View.VISIBLE
+                            }
+                        } else {
+                            tv_sign_in_error.text = result.errorBody()?.string()
+                            tv_sign_in_error.visibility = View.VISIBLE
+                        }
                     }
 
-                    override fun onFail(exception: Throwable) {
+                    override fun onFailure(exception: Throwable) {
                         println("Error: " + exception.message)
                     }
 
                 })
             }
+        }
+
+        tv_not_register.setOnClickListener {
+            findNavController().navigate(R.id.registerUserFragment)
         }
     }
 }

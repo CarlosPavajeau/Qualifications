@@ -27,4 +27,11 @@ class SessionManager(context: Context) {
     fun fetchUserId(): String? {
         return prefs.getString(USER_ID , null)
     }
+
+    fun deleteUser() {
+        val editor = prefs.edit()
+        editor.putString(USER_ID , null)
+        editor.putString(USER_TOKEN , null)
+        editor.apply()
+    }
 }

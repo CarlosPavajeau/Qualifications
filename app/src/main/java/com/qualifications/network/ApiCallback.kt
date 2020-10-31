@@ -1,6 +1,8 @@
 package com.qualifications.network
 
+import retrofit2.Response
+
 interface ApiCallback<T> {
-    fun onSuccess(result: T?)
-    fun onFail(exception: Throwable)
+    fun onResponse(result: Response<T>)
+    fun onFailure(exception: Throwable)
 }

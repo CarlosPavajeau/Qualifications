@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".view.ui.activities.UserActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_15">
 
-        <com.google.android.material.appbar.MaterialToolbar
+        <Toolbar
             android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/top_app_bar"
-            app:title="Welcome"
-            app:titleTextColor="@color/white">
+            android:layout_height="wrap_content">
 
-        </com.google.android.material.appbar.MaterialToolbar>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
+        </Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
@@ -33,15 +37,7 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/bottom_menu"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/navigation_graph" />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_menu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@android:color/white"
-            app:menu="@menu/bottom_menu" />
+            app:navGraph="@navigation/user_nav_graph" />
     </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -10,10 +10,10 @@ import com.google.android.material.textfield.TextInputLayout
 import com.qualifications.R
 import com.qualifications.model.Subject
 import com.qualifications.network.ApiCallback
-import com.qualifications.network.ServiceBuilder
 import com.qualifications.network.SessionManager
 import com.qualifications.viewmodel.SubjectViewModel
 import kotlinx.android.synthetic.main.fragment_register_subject.*
+import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass.
@@ -25,7 +25,7 @@ class RegisterSubjectFragment : Fragment() {
     private lateinit var nameField: TextInputLayout
 
     private lateinit var subjectViewModel: SubjectViewModel
-    private val sessionManager = ServiceBuilder.context?.let { SessionManager(it) }
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreateView(
         inflater: LayoutInflater , container: ViewGroup? ,
@@ -38,7 +38,8 @@ class RegisterSubjectFragment : Fragment() {
     override fun onViewCreated(view: View , savedInstanceState: Bundle?) {
         super.onViewCreated(view , savedInstanceState)
 
-        subjectViewModel = SubjectViewModel()
+        subjectViewModel = SubjectViewModel(view.context)
+        sessionManager = SessionManager(view.context)
 
         codeField = view.findViewById(R.id.subject_code_field)
         nameField = view.findViewById(R.id.subject_name_field)
@@ -56,15 +57,16 @@ class RegisterSubjectFragment : Fragment() {
         val nameText = nameField.editText?.text.toString()
 
         val subject = Subject(codeText , nameText)
-        subject.userId = sessionManager?.fetchUserId().toString()
+
+        subject.userId = sessionManager.fetchUserId().toString()
 
         subjectViewModel.saveSubject(subject , object : ApiCallback<Subject> {
-            override fun onFail(exception: Throwable) {
+            override fun onFailure(exception: Throwable) {
                 register_subject_button.isEnabled = true
                 register_subject_button.isClickable = true
             }
 
-            override fun onSuccess(result: Subject?) {
+            override fun onResponse(result: Response<Subject>) {
                 codeField.editText?.text?.clear()
                 nameField.editText?.text?.clear()
 

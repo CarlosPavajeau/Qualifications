@@ -1,12 +1,12 @@
 package com.qualifications.view.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import com.qualifications.R
+import com.qualifications.network.SessionManager
 import com.qualifications.viewmodel.SubjectViewModel
 import kotlinx.android.synthetic.main.fragment_statistics.*
 
@@ -17,34 +17,44 @@ import kotlinx.android.synthetic.main.fragment_statistics.*
  */
 class StatisticsFragment : Fragment() {
     private lateinit var subjectViewModel: SubjectViewModel
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater , container: ViewGroup? ,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_statistics, container, false)
+        return inflater.inflate(R.layout.fragment_statistics , container , false)
     }
 
     override fun onViewCreated(view: View , savedInstanceState: Bundle?) {
         super.onViewCreated(view , savedInstanceState)
 
-        subjectViewModel = SubjectViewModel()
+        subjectViewModel = SubjectViewModel(view.context)
         subjectViewModel.refresh()
 
-        subjectViewModel.subjects.observe(viewLifecycleOwner, { it ->
+        sessionManager = SessionManager(view.context)
+        
+        subjectViewModel.subjects.observe(viewLifecycleOwner , { it ->
             if (it.isNotEmpty()) {
                 val context = view.context
 
-                val subjectsDefinitive: Float = ((it.map { it.definitive }).reduce { acc, fl -> acc + fl } / it.size)
+                val subjectsDefinitive: Float =
+                    ((it.map { it.definitive }).reduce { acc , fl -> acc + fl } / it.size)
                 val registeredSubjects: Int = it.size
                 val approvedSubjects: Int = it.filter { it.definitive >= 3.0 }.size
                 val failedSubjects: Int = it.filter { it.definitive < 3.0 }.size
 
-                definitive.text = context.getString(R.string.statistics_definitive_text, subjectsDefinitive)
-                registered_subjects.text = context.getString(R.string.statistics_registered_subjects_text, registeredSubjects)
-                approved_subjects.text = context.getString(R.string.statistics_approved_subjects_text, approvedSubjects)
-                failed_subjects.text = context.getString(R.string.statistics_failed_subjects_text, failedSubjects)
+                definitive.text =
+                    context.getString(R.string.statistics_definitive_text , subjectsDefinitive)
+                registered_subjects.text = context.getString(
+                    R.string.statistics_registered_subjects_text ,
+                    registeredSubjects
+                )
+                approved_subjects.text =
+                    context.getString(R.string.statistics_approved_subjects_text , approvedSubjects)
+                failed_subjects.text =
+                    context.getString(R.string.statistics_failed_subjects_text , failedSubjects)
             }
         })
     }

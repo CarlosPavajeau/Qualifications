@@ -1,5 +1,6 @@
 package com.qualifications.view.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,10 @@ import com.google.android.material.textfield.TextInputLayout
 import com.qualifications.R
 import com.qualifications.model.User
 import com.qualifications.network.ApiCallback
-import com.qualifications.network.ServiceBuilder
 import com.qualifications.network.SessionManager
+import com.qualifications.view.ui.activities.MainActivity
 import com.qualifications.viewmodel.UserViewModel
+import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass.
@@ -37,11 +39,11 @@ class RegisterUserFragment : Fragment() {
     override fun onViewCreated(view: View , savedInstanceState: Bundle?) {
         super.onViewCreated(view , savedInstanceState)
 
+        userViewModel = UserViewModel(view.context)
+
         userInput = view.findViewById(R.id.et_user)
         emailInput = view.findViewById(R.id.et_email)
         passwordInput = view.findViewById(R.id.et_password)
-
-        val sessionManager = ServiceBuilder.context?.let { SessionManager(it) }
 
         val btRegister = view.findViewById<Button>(R.id.bt_register_user)
 
@@ -54,14 +56,22 @@ class RegisterUserFragment : Fragment() {
                 val user = User(username , email , password)
 
                 userViewModel.saveUser(user , object : ApiCallback<User> {
-                    override fun onSuccess(result: User?) {
-                        if (result != null) {
-                            
+                    override fun onResponse(result: Response<User>) {
+                        if (result.isSuccessful) {
+                            val body = result.body()
+                            if (body != null) {
+                                val sessionManager = SessionManager(view.context)
+                                sessionManager.saveAuthToken(body.token , body.id)
+
+                                val intent = Intent(view.context , MainActivity::class.java)
+                                startActivity(intent)
+                            }
                         }
+
                     }
 
-                    override fun onFail(exception: Throwable) {
-                        TODO("Not yet implemented")
+                    override fun onFailure(exception: Throwable) {
+                        println("Error: " + exception.message)
                     }
 
                 })
