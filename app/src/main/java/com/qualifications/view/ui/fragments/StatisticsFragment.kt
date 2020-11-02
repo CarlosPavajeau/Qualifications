@@ -34,7 +34,7 @@ class StatisticsFragment : Fragment() {
         subjectViewModel.refresh()
 
         sessionManager = SessionManager(view.context)
-        
+
         subjectViewModel.subjects.observe(viewLifecycleOwner , { it ->
             if (it.isNotEmpty()) {
                 val context = view.context

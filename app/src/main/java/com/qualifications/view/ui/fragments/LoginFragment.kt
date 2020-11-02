@@ -52,8 +52,6 @@ class LoginFragment : Fragment() {
             if (it.isNotBlank()) {
                 val intent = Intent(view.context , MainActivity::class.java)
                 startActivity(intent)
-
-
             } else {
                 println("No user token")
             }

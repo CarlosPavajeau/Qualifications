@@ -13,7 +13,6 @@ class UserActivity : AppCompatActivity() {
 
         val sessionManager = SessionManager(this)
         val token = sessionManager.fetchAuthToken()
-        println("Token have a value: $token")
         if (token != null) {
             if (token.isNotEmpty() && token.isNotBlank()) {
                 val intent = Intent(this , MainActivity::class.java)

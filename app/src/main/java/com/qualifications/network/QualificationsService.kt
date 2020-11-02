@@ -3,115 +3,39 @@ package com.qualifications.network
 import android.content.Context
 import com.qualifications.model.Activity
 import com.qualifications.model.Subject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class QualificationsService(private val context: Context) {
-    private val retrofit = ServiceBuilder.buildService(QualificationsAPI::class.java , context)
-
+    private val qualificationsApi =
+        ServiceBuilder.buildService(QualificationsAPI::class.java , context)
 
     fun getSubjects(apiCallback: ApiCallback<List<Subject>>) {
         val sessionManager = SessionManager(context)
         sessionManager.fetchUserId()?.let {
-            retrofit.getSubjects(it).enqueue(
-                object : Callback<List<Subject>> {
-                    override fun onFailure(call: Call<List<Subject>> , t: Throwable) {
-                        apiCallback.onFailure(t)
-                    }
-
-                    override fun onResponse(
-                        call: Call<List<Subject>> ,
-                        response: Response<List<Subject>>
-                    ) {
-                        apiCallback.onResponse(response)
-                    }
-                }
-            )
+            qualificationsApi.getSubjects(it).enqueue(Callback(apiCallback))
         }
     }
 
     fun saveSubject(subject: Subject , apiCallback: ApiCallback<Subject>) {
-        retrofit.saveSubject(subject).enqueue(
-            object : Callback<Subject> {
-                override fun onFailure(call: Call<Subject> , t: Throwable) {
-                    apiCallback.onFailure(t)
-                }
-
-                override fun onResponse(call: Call<Subject> , response: Response<Subject>) {
-                    apiCallback.onResponse(response)
-                }
-            }
-        )
+        qualificationsApi.saveSubject(subject).enqueue(Callback(apiCallback))
     }
 
     fun saveActivity(activity: Activity , apiCallback: ApiCallback<Activity>) {
-        retrofit.saveActivity(activity).enqueue(
-            object : Callback<Activity> {
-                override fun onFailure(call: Call<Activity> , t: Throwable) {
-                    apiCallback.onFailure(t)
-                }
-
-                override fun onResponse(call: Call<Activity> , response: Response<Activity>) {
-                    apiCallback.onResponse(response)
-                }
-            }
-        )
+        qualificationsApi.saveActivity(activity).enqueue(Callback(apiCallback))
     }
 
     fun updateSubject(subject: Subject , apiCallback: ApiCallback<Subject>) {
-        retrofit.updateSubject(subject.code , subject).enqueue(
-            object : Callback<Subject> {
-                override fun onFailure(call: Call<Subject> , t: Throwable) {
-                    apiCallback.onFailure(t)
-                }
-
-                override fun onResponse(call: Call<Subject> , response: Response<Subject>) {
-                    apiCallback.onResponse(response)
-                }
-            }
-        )
+        qualificationsApi.updateSubject(subject.code , subject).enqueue(Callback(apiCallback))
     }
 
     fun updateActivity(activity: Activity , apiCallback: ApiCallback<Activity>) {
-        retrofit.updateActivity(activity.id , activity).enqueue(
-            object : Callback<Activity> {
-                override fun onFailure(call: Call<Activity> , t: Throwable) {
-                    apiCallback.onFailure(t)
-                }
-
-                override fun onResponse(call: Call<Activity> , response: Response<Activity>) {
-                    apiCallback.onResponse(response)
-                }
-            }
-        )
+        qualificationsApi.updateActivity(activity.id , activity).enqueue(Callback(apiCallback))
     }
 
     fun deleteSubject(subjectCode: String , apiCallback: ApiCallback<Subject>) {
-        retrofit.deleteSubject(subjectCode).enqueue(
-            object : Callback<Subject> {
-                override fun onFailure(call: Call<Subject> , t: Throwable) {
-                    apiCallback.onFailure(t)
-                }
-
-                override fun onResponse(call: Call<Subject> , response: Response<Subject>) {
-                    apiCallback.onResponse(response)
-                }
-            }
-        )
+        qualificationsApi.deleteSubject(subjectCode).enqueue(Callback(apiCallback))
     }
 
     fun deleteActivity(activityId: Int , apiCallback: ApiCallback<Activity>) {
-        retrofit.deleteActivity(activityId).enqueue(
-            object : Callback<Activity> {
-                override fun onFailure(call: Call<Activity> , t: Throwable) {
-                    apiCallback.onFailure(t)
-                }
-
-                override fun onResponse(call: Call<Activity> , response: Response<Activity>) {
-                    apiCallback.onResponse(response)
-                }
-            }
-        )
+        qualificationsApi.deleteActivity(activityId).enqueue(Callback(apiCallback))
     }
 }
