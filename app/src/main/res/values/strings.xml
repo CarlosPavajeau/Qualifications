@@ -55,4 +55,11 @@
     <string name="username_hint">Username</string>
     <string name="username_helper_text">Enter your username</string>
     <string name="logout_hint">Logout</string>
+    <string name="activity_name_default_text">Activity name</string>
+    <string name="edit_activity_text">Edit activity</string>
+    <string name="delete_activity_text">Delete activity</string>
+    <string name="subject_image_text">Subject images</string>
+    <string name="subject_name_default">Subject name</string>
+    <string name="edit_subject_text">Edit subject</string>
+    <string name="subject_delete_text">Subject delete</string>
 </resources>

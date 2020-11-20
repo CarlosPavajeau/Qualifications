@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_5">5dp</dimen>
+    <dimen name="spacing_3">3dp</dimen>
     <dimen name="title_text">20sp</dimen>
-    <dimen name="subject_item_image">130dp</dimen>
+    <dimen name="subject_item_image">150dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
     <dimen name="padding_10">10dp</dimen>
     <dimen name="subtitle_text">17sp</dimen>

@@ -1,97 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_5"
+        android:baselineAligned="false"
         android:orientation="horizontal"
-        android:layout_margin="@dimen/margin_5">
+        android:padding="@dimen/margin_5">
+
         <LinearLayout
             android:layout_width="@dimen/zero_dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/subject_item_image"
                 android:layout_gravity="bottom"
+                android:alpha="0.7"
+                android:contentDescription="@string/subject_image_text"
                 android:src="@drawable/ic_baseline_class_24"
-                app:tint="@color/colorPrimary"
-                android:alpha="0.9">
-            </ImageView>
+                app:tint="@color/colorPrimary" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="@dimen/zero_dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_5"
             android:layout_weight="3"
-            android:orientation="vertical"
-            android:layout_marginStart="@dimen/margin_5">
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/subject_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Subject name"
+                android:paddingBottom="@dimen/margin_5"
+                android:text="@string/subject_name_default"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/title_text"
-                android:textStyle="bold"
-                android:paddingBottom="@dimen/margin_5">
-            </TextView>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/subject_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/subject_item_code">
-            </TextView>
+                android:padding="@dimen/spacing_3"
+                android:text="@string/subject_item_code" />
+
             <TextView
                 android:id="@+id/subject_qualifications"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/subject_qualifications_item">
-            </TextView>
+                android:padding="@dimen/spacing_3"
+                android:text="@string/subject_qualifications_item" />
+
             <TextView
                 android:id="@+id/subject_definitive"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/subject_definitive_item">
-            </TextView>
+                android:padding="@dimen/spacing_3"
+                android:text="@string/subject_definitive_item" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="start"
-                android:gravity="right">
+                android:layout_gravity="end"
+                android:gravity="end"
+                android:orientation="horizontal">
+
                 <ImageButton
                     android:id="@+id/subject_edit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_edit"
                     android:layout_gravity="center_vertical"
-                    android:tint="@color/colorPrimary"
-                    android:backgroundTint="@android:color/transparent">
-                </ImageButton>
+                    android:layout_marginEnd="@dimen/spacing_45"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/edit_subject_text"
+                    android:src="@drawable/ic_baseline_edit"
+                    android:tint="@color/colorPrimary" />
+
                 <ImageButton
                     android:id="@+id/subject_delete_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_delete"
-                    android:tint="@color/colorDelete"
+                    android:layout_gravity="center_vertical"
                     android:backgroundTint="@android:color/transparent"
-                    android:layout_gravity="center_vertical">
-                </ImageButton>
+                    android:contentDescription="@string/subject_delete_text"
+                    android:src="@drawable/ic_baseline_delete"
+                    android:tint="@color/colorDelete" />
             </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="@dimen/margin_15"
         android:layout_marginRight="@dimen/margin_15"
         android:layout_marginBottom="@dimen/padding_10"
-        android:background="@android:color/darker_gray"
-        android:alpha="0.5">
-    </View>
+        android:alpha="0.5"
+        android:background="@android:color/darker_gray" />
 </LinearLayout>

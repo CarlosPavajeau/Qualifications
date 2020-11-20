@@ -1,97 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="@dimen/margin_5">
+        android:layout_margin="@dimen/margin_5"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
         <LinearLayout
-            android:layout_width="@dimen/zero_dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="95dp"
-                android:src="@drawable/ic_baseline_assignment"
-                app:tint="@color/yellowGreen"
-                android:alpha="0.5">
-            </ImageView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="@dimen/zero_dp"
-            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_5"
             android:layout_weight="3"
-            android:orientation="vertical"
-            android:layout_marginStart="@dimen/margin_5">
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/activity_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Activity name"
+                android:text="@string/activity_name_default_text"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/title_text"
-                android:textStyle="bold">
-            </TextView>
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/padding_10">
+                android:padding="@dimen/padding_10">
+
                 <TextView
                     android:id="@+id/activity_note"
                     android:layout_width="match_parent"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="@string/activity_note_item">
-                </TextView>
-                <TextView
                     android:layout_weight="1"
+                    android:text="@string/activity_note_item" />
+
+                <TextView
                     android:id="@+id/activity_percent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/activity_percent_item">
-                </TextView>
+                    android:layout_weight="1"
+                    android:text="@string/activity_percent_item" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="right"
-                android:gravity="right">
+                android:layout_gravity="end"
+                android:orientation="horizontal">
+
                 <ImageButton
                     android:id="@+id/activity_edit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_edit"
-                    android:tint="@color/colorPrimary"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/padding_10"
                     android:backgroundTint="@android:color/transparent"
-                    android:layout_gravity="center_vertical">
-                </ImageButton>
+                    android:contentDescription="@string/edit_activity_text"
+                    android:src="@drawable/ic_baseline_edit"
+                    android:tint="@color/colorPrimary" />
+
                 <ImageButton
                     android:id="@+id/activity_delete_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_delete"
-                    android:tint="@color/colorDelete"
+                    android:layout_gravity="center_vertical"
                     android:backgroundTint="@android:color/transparent"
-                    android:layout_gravity="center_vertical">
-                </ImageButton>
+                    android:contentDescription="@string/delete_activity_text"
+                    android:src="@drawable/ic_baseline_delete"
+                    android:tint="@color/colorDelete" />
             </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="@dimen/margin_15"
         android:layout_marginRight="@dimen/margin_15"
         android:layout_marginBottom="@dimen/padding_10"
-        android:background="@android:color/darker_gray"
-        android:alpha="0.5">
-    </View>
+        android:alpha="0.5"
+        android:background="@android:color/darker_gray" />
 </LinearLayout>

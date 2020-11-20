@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.ui.fragments.RegisterActivityFragment">
 
     <LinearLayout
@@ -11,75 +11,86 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/padding_10">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/title_text"
+            android:layout_marginTop="@dimen/padding_10"
+            android:text="@string/register_activity_title"
             android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:text="@string/register_activity_title">
-        </TextView>
+            android:textSize="@dimen/title_text"
+            android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/padding_10">
+            android:layout_marginTop="@dimen/padding_10"
+            android:orientation="vertical">
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/activity_name_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_margin="@dimen/padding_10"
                 android:hint="@string/activity_name_field"
-                app:helperTextEnabled="true"
-                app:helperText="@string/activity_name_helper_text">
+                app:helperText="@string/activity_name_helper_text"
+                app:helperTextEnabled="true">
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="text">
-                </EditText>
+                    android:autofillHints="Hello"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/activity_note_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_margin="@dimen/padding_10"
                 android:hint="@string/activity_note_field"
-                app:helperTextEnabled="true"
-                app:helperText="@string/activity_note_helper_text">
+                app:helperText="@string/activity_note_helper_text"
+                app:helperTextEnabled="true">
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="numberDecimal">
-                </EditText>
+                    android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/activity_percent_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_margin="@dimen/padding_10"
                 android:hint="@string/activity_percent_field"
-                app:helperTextEnabled="true"
-                app:helperText="@string/activity_percent_helper_text">
+                app:helperText="@string/activity_percent_helper_text"
+                app:helperTextEnabled="true">
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="numberDecimal">
-                </EditText>
+                    android:autofillHints="Hello"
+                    android:inputType="numberDecimal"
+                    android:labelFor="@id/activity_percent_field" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/register_activity_button"
-            android:layout_marginTop="@dimen/margin_15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/colorPrimary"
+            android:layout_marginTop="@dimen/spacing_25"
             android:backgroundTint="@color/colorPrimary"
+            android:text="@string/register_activity_button_text"
             android:textColor="@android:color/white"
+            android:textColorHint="@color/colorPrimary"
             app:icon="@drawable/ic_baseline_add_circle"
-            app:iconGravity="textStart"
-            android:text="@string/register_activity_button_text">
-        </com.google.android.material.button.MaterialButton>
+            app:iconGravity="textStart" />
     </LinearLayout>
 
 </FrameLayout>

@@ -105,13 +105,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_forgotten_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/forgotten_password_text"
-                    android:textAlignment="center" />
-
-                <TextView
                     android:id="@+id/tv_not_register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

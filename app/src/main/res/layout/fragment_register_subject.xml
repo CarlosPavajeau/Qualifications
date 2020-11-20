@@ -1,72 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.ui.fragments.RegisterSubjectFragment"
-    android:theme="@style/MaterialTheme">
+    tools:context=".view.ui.fragments.RegisterSubjectFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="5dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:gravity="center"
-            android:textAlignment="center"
             android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/register_subject_title"
+            android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:text="@string/register_subject_title">
-        </TextView>
+            android:textSize="25sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/subject_code_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_margin="@dimen/padding_10"
                 android:hint="@string/code_field_label"
-                app:helperTextEnabled="true"
-                app:helperText="@string/subject_code_helper_text">
-                <com.google.android.material.textfield.TextInputEditText
+                app:helperText="@string/subject_code_helper_text"
+                app:helperTextEnabled="true">
+
+                <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="text">
-                </com.google.android.material.textfield.TextInputEditText>
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/subject_name_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_margin="@dimen/padding_10"
                 android:hint="@string/name_field_label"
-                app:helperTextEnabled="true"
-                app:helperText="@string/subject_name_helper_text">
-                <com.google.android.material.textfield.TextInputEditText
+                app:helperText="@string/subject_name_helper_text"
+                app:helperTextEnabled="true">
+
+                <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="text">
-                </com.google.android.material.textfield.TextInputEditText>
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <Button
                 android:id="@+id/register_subject_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:textColorHint="@color/colorPrimary"
                 android:backgroundTint="@color/colorPrimary"
+                android:text="@string/register_subject_button_text"
                 android:textColor="@android:color/white"
+                android:textColorHint="@color/colorPrimary"
                 app:icon="@drawable/ic_baseline_add_circle"
-                app:iconGravity="textStart"
-                android:text="@string/register_subject_button_text">
-            </Button>
+                app:iconGravity="textStart" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>
